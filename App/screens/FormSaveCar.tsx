@@ -5,7 +5,7 @@ import Geolocation from 'react-native-geolocation-service';
 
 const FormSaveCar = ({ onPress, visible, idUser, title, btnText,data}) => {
 
-    const url = "http://localhost:3000/";
+    //#region declarations and initial values
     const [placas, setPlacas] = useState("");
     const [user_id, setUser_id] = useState(idUser);
     const [marca, setMarca] = useState("");
@@ -13,6 +13,9 @@ const FormSaveCar = ({ onPress, visible, idUser, title, btnText,data}) => {
     const [modelo, setModelo] = useState("");
     const [latitud, setLatitud] = useState(51.909864);
     const [longitud, setLongitud] = useState(-0.118092);
+
+    //#endregion
+    const url = "http://localhost:3000/";
 
 
     const getLocation = () => {
@@ -34,7 +37,6 @@ const FormSaveCar = ({ onPress, visible, idUser, title, btnText,data}) => {
         console.log(res.code);
         switch (res.code) {
             case 200:
-                // alert("Car created");
                 onPress(!visible)
                 break;
             case 300:
@@ -57,7 +59,6 @@ const FormSaveCar = ({ onPress, visible, idUser, title, btnText,data}) => {
             const dataToSave = { user_id, placas, marca, color, modelo, latitud, longitud}
             
             if(data != null){
-                console.log("Update");
                 const dataPut = {...data, placas,marca,color,modelo}
                 
                 axios.put(url + 'carsById', dataPut, {
@@ -88,7 +89,7 @@ const FormSaveCar = ({ onPress, visible, idUser, title, btnText,data}) => {
             }
 
         } else {
-            console.log("Datos no validos");
+            alert("Datos no validos");
 
         }
     }
@@ -96,7 +97,6 @@ const FormSaveCar = ({ onPress, visible, idUser, title, btnText,data}) => {
     useEffect(() => {
         
             getLocation();
-            console.log("Form data: ",data);
             
             if (data != null){
                 setPlacas(data.plates)
@@ -112,10 +112,10 @@ const FormSaveCar = ({ onPress, visible, idUser, title, btnText,data}) => {
 
     return (
         <Modal
-            animationType="slide"  // Slide in from bottom
-            transparent={true}     // Modal will be transparent around the content
+            animationType="slide"  
+            transparent={true} 
             visible={visible}
-            onRequestClose={() => onPress}  // Close when back button is pressed
+            onRequestClose={() => onPress} 
         >
             <View style={styles.modalOverlay}>
                 <View style={styles.modalView}>
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',  // Transparent dark background
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
     },
     buttonText: {
         color: 'white',

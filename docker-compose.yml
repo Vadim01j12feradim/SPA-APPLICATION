@@ -16,33 +16,24 @@ services:
       - socket
 
   socket:
-    build: 
-      context: ./Socket
+    image: sensei2001/spa-socket:2 
     ports:
       - "3001:3001"
-    volumes:
-      - ./Socket:/app
     environment:
       - NODE_ENV=development
 
   app:
-    build: 
-      context: ./App
+    image: sensei2001/spa-app:2 
     ports:
       - "19000:19000"  
       - "19001:19001"  
       - "19002:19002"   
       - "8081:8081" 
-    volumes:
-      - ./App:/app
     environment:
       - NODE_ENV=development
 
   migration:
-    build: 
-      context: ./Migration
-    volumes:
-      - ./Migration:/app
+    image: sensei2001/spa-migration:2 
     environment:
       - NODE_ENV=development
     depends_on:
@@ -50,12 +41,9 @@ services:
       # - app
 
   api:
-    build: 
-      context: ./API
+    image: sensei2001/spa-api:2 
     ports:
       - "3000:3000"
-    volumes:
-      - ./API:/app
     environment:
       - NODE_ENV=development
     depends_on:

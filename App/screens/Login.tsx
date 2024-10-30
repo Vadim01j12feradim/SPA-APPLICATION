@@ -4,18 +4,16 @@ import { View, StyleSheet } from 'react-native';
 import { TextInput, Button, Text, Avatar, useTheme } from 'react-native-paper';
 import storeSession from '../tools/storeSession';
 import encript from '../tools/encript';
-// import storeSession from '../tools/storeSession';
-
 const Login = ({ navigation }) => {
+
+  //#region Declarations and initial values
   const url = "http://localhost:3000/"
   const [username, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const theme = useTheme();
+  //#endregion
 
   const handleLogin = () => {
-    // Aquí manejas el login
-    console.log('Email:', username);
-    console.log('Password:', password);
 
     const pass = encript.encryptPassword(password)
     const data = {username, password: pass}
@@ -35,13 +33,7 @@ const Login = ({ navigation }) => {
         case 200:
    
           await storeSession.storeSession(res.data)
-          console.log("Loged....");
-          
           navigation.navigate("Dashboard")
-          // const data = await storeSession.getSession() 
-          // console.log(data);
-          
-
           break;
         case 300:
           alert("Credenciales no validas");
@@ -54,8 +46,6 @@ const Login = ({ navigation }) => {
     .catch(error => {
         console.error('Error posting data:', error.response ? error.response.data : error.message); // Handle the error
     });
-
-      
   };
 
   

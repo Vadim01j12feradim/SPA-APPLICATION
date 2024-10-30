@@ -11,19 +11,19 @@ export default function NewItemButton({ onPress }) {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#4CAF50',  // Button color
+    backgroundColor: '#4CAF50',  
     paddingVertical: 15,
     paddingHorizontal: 30,
-    borderRadius: 30,            // Rounded corners
-    alignItems: 'center',        // Center text
-    shadowColor: '#000',         // Shadow for elevated look
+    borderRadius: 30,   
+    alignItems: 'center',  
+    shadowColor: '#000',  
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5,                // For Android shadow
+    elevation: 5, 
   },
   buttonText: {
-    color: '#fff',               // White text color
+    color: '#fff', 
     fontSize: 18,
     fontWeight: 'bold',
   },

@@ -12,39 +12,57 @@ services:
       - db_data:/var/lib/mysql
     ports:
       - "3306:3306"
+    depends_on:
+      - socket
 
   socket:
-    image: sensei2001/spa-socket:2 
+    build: 
+      context: ./Socket
     ports:
       - "3001:3001"
+    volumes:
+      - ./Socket:/app
     environment:
       - NODE_ENV=development
 
   app:
-    image: sensei2001/spa-app:2 
+    build: 
+      context: ./App
     ports:
       - "19000:19000"  
       - "19001:19001"  
       - "19002:19002"   
       - "8081:8081" 
-    environment:
-      - NODE_ENV=development
-
-
-  api:
-    image: sensei2001/spa-api:2 
-    ports:
-      - "3000:3000"
+    volumes:
+      - ./App:/app
     environment:
       - NODE_ENV=development
 
   migration:
-    image: sensei2001/spa-migration:2 
+    build: 
+      context: ./Migration
+    volumes:
+      - ./Migration:/app
     environment:
       - NODE_ENV=development
     depends_on:
       - db
-      - app
+      # - app
+
+  api:
+    build: 
+      context: ./API
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./API:/app
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - db
+      - migration 
+      - socket
+      # - app
 
 volumes:
   db_data:

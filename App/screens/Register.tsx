@@ -7,22 +7,22 @@ import axios from 'axios';
 import encript from '../tools/encript';
 
 const Register = ({ navigation }) => {
-  const url = "http://localhost:3000/"
+  //#region  declarations and initial values
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [role, setRole] = React.useState('viewer');
-  
   const [confirmPassword, setConfirmPassword] = React.useState('');
   const theme = useTheme();
+  const url = "http://localhost:3000/"
+  //#endregion
 
   const handleRegister = () => {
     if (password !== confirmPassword) {
-      console.log('Passwords do not match');
+      alert('Passwords do not match');
       return;
     }
 
     const data = {password:encript.encryptPassword(password), username,role}
-    console.log(data);
 
     axios.post(url+'items', data, {
         headers: {
@@ -32,7 +32,6 @@ const Register = ({ navigation }) => {
     })
     .then(response => {
       const res = response.data
-      console.log(res.code);
       switch (res.code) {
         case 200:
           navigation.navigate("Login")
@@ -48,9 +47,6 @@ const Register = ({ navigation }) => {
     .catch(error => {
         console.error('Error posting data:', error.response ? error.response.data : error.message); // Handle the error
     });
-
-    console.log('Name:', name);
-    console.log('Password:', password);
   };
 
   return (

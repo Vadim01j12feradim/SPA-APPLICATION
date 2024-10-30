@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   updateButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#5bc0de', // Blue color for update
+    backgroundColor: '#5bc0de', 
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 8,

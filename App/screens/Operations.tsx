@@ -1,6 +1,5 @@
 import React from 'react';
-import { Text, TouchableOpacity, StyleSheet, View } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Ensure you have react-native-vector-icons installed
+import { View } from 'react-native';
 import { UpdateButton } from './UpdateButton';
 import { DeleteButton } from './DeleteButton';
 

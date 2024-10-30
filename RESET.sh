@@ -6,6 +6,7 @@ sudo docker volume prune -f
 sudo docker volume rm $(docker volume ls -q)
 
 sudo docker-compose up --build
+
 # -d &&
 # sudo docker tag spa-migration sensei2001/spa-migration:2 &&
 # sudo docker tag spa-api sensei2001/spa-api:2 &&

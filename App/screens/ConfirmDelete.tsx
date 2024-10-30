@@ -1,6 +1,5 @@
-import { Modal, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from "react-native";
+import { Modal, Pressable, StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
 import axios from "axios";
-import { useEffect, useState } from "react";
 
 
 export const ConfirmDelete = ({ data, visible, onPress }) => {
@@ -24,7 +23,7 @@ export const ConfirmDelete = ({ data, visible, onPress }) => {
                 
             })
             .catch(error => {
-                console.error('Error posting data:', error.response ? error.response.data : error.message); // Handle the error
+                console.error('Error posting data:', error.response ? error.response.data : error.message);
             });
 
     }
@@ -33,10 +32,10 @@ export const ConfirmDelete = ({ data, visible, onPress }) => {
     return (
 
         <Modal
-            animationType="slide"  // Slide in from bottom
-            transparent={true}     // Modal will be transparent around the content
+            animationType="slide"
+            transparent={true}  
             visible={visible}
-            onRequestClose={() => onPress}  // Close when back button is pressed
+            onRequestClose={() => onPress} 
         >
             <View style={styles.modalOverlay}>
                 <View style={styles.modalView}>
