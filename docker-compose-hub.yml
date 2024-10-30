@@ -1,0 +1,50 @@
+# docker-compose.yml
+version: '3'
+services:
+  db:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=SPA
+      - MYSQL_USER=username
+      - MYSQL_PASSWORD=password
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  socket:
+    image: sensei2001/spa-socket:2 
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+
+  app:
+    image: sensei2001/spa-app:2 
+    ports:
+      - "19000:19000"  
+      - "19001:19001"  
+      - "19002:19002"   
+      - "8081:8081" 
+    environment:
+      - NODE_ENV=development
+
+
+  api:
+    image: sensei2001/spa-api:2 
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+
+  migration:
+    image: sensei2001/spa-migration:2 
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - db
+      - app
+
+volumes:
+  db_data:

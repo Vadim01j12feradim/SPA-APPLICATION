@@ -1,0 +1,15 @@
+# API node modules
+Api/node_modules/
+
+# App node modules
+APP/node_modules/
+
+# Client node_modules
+
+Client/node_modules/
+
+# Migration node_modules
+Migration/node_modules/
+
+# Socket node_modules
+Socket/node_modules/
